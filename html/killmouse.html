@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			body{
+				background: brown;				
+			}			
+			#box{
+				width: 620px;
+				height: 620px;
+				border: 2px solid white;
+				background: black;
+				margin: 150px 150px;
+				/*position: relative;*/
+			}		
+			#box>img{
+				width: 200px;
+				height: 200px;	
+				border: 1px solid white;			
+			}
+			p{
+				width: 200px;
+				height: 40px;
+				border: 2px solid white;
+				background: blanchedalmond;
+/*				margin: auto 150px;*/
+				line-height: 40px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<br />
+		<br />
+		<br />
+		<p id="fs">得分：</p>
+		<div id="box">												
+			<img src="../img/timg.jpg"/>
+			<img src="../img/timg.jpg"/>
+			<img src="../img/timg.jpg"/>
+			<img src="../img/timg.jpg"/>
+			<img src="../img/timg.jpg"/>
+			<img src="../img/timg.jpg"/>
+			<img src="../img/timg.jpg"/>
+			<img src="../img/timg.jpg"/>
+			<img src="../img/timg.jpg"/>										
+		</div>		
+	</body>
+	<script type="text/javascript">
+		var grade=0;
+		var box=document.getElementById('box');
+		var imgs=document.getElementById('box').children;
+		var df=document.getElementById('fs');//分数盒子
+			
+		setInterval(()=>{
+			var x=Math.round(Math.random()*8);
+			imgs[x].src='../img/mouse.jpg';
+			
+			var x=Math.round(Math.random()*8);//
+			imgs[x].src='../img/timg.jpg';
+			
+		},500);
+		
+		for(var i=0;i<imgs.length;i++){
+			imgs[i].onclick=function(){
+				var src=this.src;
+				console.log(src.charAt(src.length-5)=='e');
+				if(src.charAt(src.length-5)=='e'){
+					grade=grade+2;
+					df.innerText='得分：'+grade;
+					this.src='../img/timg.jpg';
+				}else{
+					setTimeout(()=>{
+					location.reload();
+					},5000)
+				}			
+			}
+		}
+	</script>
+</html>
